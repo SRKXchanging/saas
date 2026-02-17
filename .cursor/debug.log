@@ -1,0 +1,16 @@
+{"location":"pages/index.tsx:useEffect","message":"EventSource creating","data":{"url":"/api"},"timestamp":1771298755563,"hypothesisId":"H3"}
+{"location":"pages/index.tsx:onopen","message":"EventSource open","data":{"readyState":1},"timestamp":1771298756097,"hypothesisId":"H3"}
+{"location":"pages/api/index.ts:handler","message":"API handler entered","data":{"method":"GET","url":"/api"},"timestamp":1771298756094,"hypothesisId":"H3"}
+{"location":"pages/api/index.ts:apiKey","message":"API key check","data":{"hasApiKey":true},"timestamp":1771298756096,"hypothesisId":"H1"}
+{"location":"pages/api/index.ts:headers","message":"SSE headers set","data":{"headersSet":true},"timestamp":1771298756097,"hypothesisId":"H2"}
+{"location":"pages/api/index.ts:firstWrite","message":"First SSE write","data":{"firstWrite":true},"timestamp":1771298757246,"hypothesisId":"H5"}
+{"location":"pages/index.tsx:onerror","message":"SSE error","data":{"readyState":0},"timestamp":1771298767091,"hypothesisId":"H1"}
+{"location":"pages/index.tsx:onerror","message":"SSE error","data":{"readyState":0},"timestamp":1771298767091,"hypothesisId":"H5"}
+{"location":"pages/index.tsx:useEffect","message":"EventSource creating","data":{"url":"/api"},"timestamp":1771298987179,"hypothesisId":"H3"}
+{"location":"pages/index.tsx:onopen","message":"EventSource open","data":{"readyState":1},"timestamp":1771298987360,"hypothesisId":"H3"}
+{"location":"pages/api/index.ts:handler","message":"API handler entered","data":{"method":"GET","url":"/api"},"timestamp":1771298987353,"hypothesisId":"H3"}
+{"location":"pages/api/index.ts:apiKey","message":"API key check","data":{"hasApiKey":true},"timestamp":1771298987359,"hypothesisId":"H1"}
+{"location":"pages/api/index.ts:headers","message":"SSE headers set","data":{"headersSet":true},"timestamp":1771298987359,"hypothesisId":"H2"}
+{"location":"pages/api/index.ts:firstWrite","message":"First SSE write","data":{"firstWrite":true},"timestamp":1771298988356,"hypothesisId":"H5"}
+{"location":"pages/index.tsx:onerror","message":"SSE error","data":{"readyState":0,"hasContent":true},"timestamp":1771298996852,"hypothesisId":"H1"}
+{"location":"pages/index.tsx:onerror","message":"SSE error","data":{"readyState":0,"hasContent":true},"timestamp":1771298996853,"hypothesisId":"H5"}
