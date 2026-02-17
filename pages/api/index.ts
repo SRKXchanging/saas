@@ -11,17 +11,8 @@ export default async function handler(
   _req: NextApiRequest,
   res: NextApiResponse
 ) {
-  // #region agent log
-  fetch('http://127.0.0.1:7242/ingest/481d7f8a-7d8c-4f4c-ba8e-9994d78662e8',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'pages/api/index.ts:handler',message:'API handler entered',data:{method:_req.method,url:_req.url},timestamp:Date.now(),hypothesisId:'H3'})}).catch(()=>{});
-  // #endregion
   const apiKey = process.env.OPENAI_API_KEY;
-  // #region agent log
-  fetch('http://127.0.0.1:7242/ingest/481d7f8a-7d8c-4f4c-ba8e-9994d78662e8',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'pages/api/index.ts:apiKey',message:'API key check',data:{hasApiKey:!!apiKey},timestamp:Date.now(),hypothesisId:'H1'})}).catch(()=>{});
-  // #endregion
   if (!apiKey) {
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/481d7f8a-7d8c-4f4c-ba8e-9994d78662e8',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'pages/api/index.ts:noKey',message:'Returning SSE error (no 500)',data:{returning500:false},timestamp:Date.now(),hypothesisId:'H1'})}).catch(()=>{});
-    // #endregion
     res.setHeader('Content-Type', 'text/event-stream');
     res.setHeader('Cache-Control', 'no-cache, no-transform');
     res.setHeader('Connection', 'keep-alive');
@@ -37,9 +28,6 @@ export default async function handler(
   res.setHeader('Connection', 'keep-alive');
   res.setHeader('X-Accel-Buffering', 'no');
   res.flushHeaders?.();
-  // #region agent log
-  fetch('http://127.0.0.1:7242/ingest/481d7f8a-7d8c-4f4c-ba8e-9994d78662e8',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'pages/api/index.ts:headers',message:'SSE headers set',data:{headersSet:true},timestamp:Date.now(),hypothesisId:'H2'})}).catch(()=>{});
-  // #endregion
 
   const openai = new OpenAI({ apiKey });
   const model = process.env.OPENAI_MODEL || 'gpt-4o-mini';
@@ -57,16 +45,9 @@ export default async function handler(
       stream: true,
     });
 
-    let firstWrite = true;
     for await (const chunk of stream) {
       const text = chunk.choices[0]?.delta?.content;
       if (text) {
-        if (firstWrite) {
-          // #region agent log
-          fetch('http://127.0.0.1:7242/ingest/481d7f8a-7d8c-4f4c-ba8e-9994d78662e8',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'pages/api/index.ts:firstWrite',message:'First SSE write',data:{firstWrite:true},timestamp:Date.now(),hypothesisId:'H5'})}).catch(()=>{});
-          // #endregion
-          firstWrite = false;
-        }
         const lines = text.split('\n');
         for (const line of lines) {
           res.write(`data: ${line}\n`);
@@ -76,9 +57,6 @@ export default async function handler(
     }
     res.write('data: [DONE]\n\n');
   } catch (err) {
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/481d7f8a-7d8c-4f4c-ba8e-9994d78662e8',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'pages/api/index.ts:catch',message:'OpenAI error',data:{error:String(err)},timestamp:Date.now(),hypothesisId:'H4'})}).catch(()=>{});
-    // #endregion
     console.error('OpenAI stream error:', err);
     res.write(`data: ${JSON.stringify({ error: 'Stream failed' })}\n\n`);
   } finally {
